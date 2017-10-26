@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG,"Instance ID : "+ FirebaseInstanceId.getInstance().getId());
+
+
 
         FirebaseMessaging.getInstance().subscribeToTopic("news");                   //subscribing to the notification topic when the app comes online on your phone.
         pushInstanceID(FirebaseInstanceId.getInstance());                           //store the instance ID for notifications later on.
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 btn.setVisibility(View.VISIBLE);
-                btn.setBackgroundColor(Color.GRAY);
+                btn.setBackgroundColor(Color.LTGRAY);
                 btn.setText("Warn");
             }
 
@@ -105,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 newData = dataSnapshot.child("Data").getValue(Data.class);
                 if(newData != null){
                     url = newData.getURL();
-                    Log.d(TAG, "URL: " + newData.getURL());
                     Glide.with(MainActivity.this)
                             .load(url)
                             .into(image);
@@ -276,7 +276,6 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String curr = snapshot.getValue().toString();
-                    Log.d(TAG, "Id curr is " + curr);
                     idList.add(curr);
                 }
             }
@@ -288,7 +287,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Boolean duplicateIDFlag = false;
-        Log.d(TAG,"List has size " + idList.size());
         for(String s: idList){
             if(ID!=null && idString!=null && s.equalsIgnoreCase(idString)) duplicateIDFlag = true;
         }
