@@ -3,6 +3,7 @@ package com.example.nirvansharma.ttsecure;
         import android.content.Context;
         import android.content.DialogInterface;
         import android.content.Intent;
+        import android.graphics.Color;
         import android.net.Uri;
         import android.os.Bundle;
         import android.os.CountDownTimer;
@@ -12,6 +13,9 @@ package com.example.nirvansharma.ttsecure;
         import android.util.Log;
         import android.view.Gravity;
         import android.view.View;
+        import android.view.animation.AlphaAnimation;
+        import android.view.animation.Animation;
+        import android.view.animation.LinearInterpolator;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageView;
@@ -62,6 +66,35 @@ public class MainActivity extends AppCompatActivity {
                 .load(R.drawable.cast_ic_notification_connecting)
                 .into(image);
 
+
+        final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
+        final Button btn = (Button) findViewById(R.id.btnAlarm);
+        animation.setDuration(500); // duration - half a second
+        animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+        animation.setRepeatCount(20);
+        animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
+        btn.startAnimation(animation);
+        btn.setBackgroundColor(Color.RED);
+
+        animation.setAnimationListener(new Animation.AnimationListener(){
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                btn.setVisibility(View.VISIBLE);
+                btn.setBackgroundColor(Color.GRAY);
+                btn.setText("Warn");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
 
         //This query , using the reference of the list parent node , will return the last child node added in the list.
