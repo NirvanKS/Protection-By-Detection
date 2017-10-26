@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TTSecure</string>
+    <string name="app_name">Protection By Detection</string>
     <string name="btnfalseAlarm"> False Call </string>
     <string name="btnAlarm"> Alarm </string>
 </resources>

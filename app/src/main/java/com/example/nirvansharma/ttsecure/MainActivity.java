@@ -63,23 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 .into(image);
 
 
-        new CountDownTimer(11000,1000){
-            TextView mTextField = findViewById(R.id.textViewCounter);
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-               mTextField.setText("Seconds remaining: " + millisUntilFinished / 1000);
-            }
-
-            @Override
-            public void onFinish() {
-                mTextField.setText("done!");
-                if(!optionSelected){
-                    //can we send emails still?
-                }
-            }
-        }.start();
-
 
         //This query , using the reference of the list parent node , will return the last child node added in the list.
         // That is, it will return the latest image url in firebase.
